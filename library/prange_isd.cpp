@@ -14,9 +14,8 @@ void fisher_yates_shuffle (const vector<int> &src, vector<int> &dst) {
 }
 
 void permute_matrix_columns (const vector<bitset<N> > &src, vector<bitset<N> > &dst, vector<int> &new_pos){
-    // copy src vector to dst vector
-    dst = src;
-
+    bitset<N> tmp_b;
+    dst.clear();
     // initialize positions vector as (0, 1, 2, ...)
     vector<int> start_pos;
     for (int i=0; i<N; i++)
@@ -26,14 +25,15 @@ void permute_matrix_columns (const vector<bitset<N> > &src, vector<bitset<N> > &
     fisher_yates_shuffle(start_pos, new_pos);
 
     // compute new matrix according to new positions
-    for (int i=0; i<N-K; i++)
+    for (int i=0; i<N-K; i++) {
         for (int j=0; j<N; j++)
-            dst[i][j] = src[i][new_pos[j]];
+            tmp_b[j] = src[i][new_pos[j]];
+        dst.push_back(tmp_b);
+    }
 }
 
 bool gaussian_elimination (const vector<bitset<N> > &h, const bitset<N-K> &s, bitset<N-K> &sigma) {
     vector<bitset<N> > tmp_h;
-    bool tmp_row;
     tmp_h = h;
     sigma = s;
 
@@ -44,9 +44,7 @@ bool gaussian_elimination (const vector<bitset<N> > &h, const bitset<N-K> &s, bi
                 // swap rows
                 swap (tmp_h[i], tmp_h[row]);
                 // swap corresponding syndrome bits
-                tmp_row = sigma[i];
-                sigma[i] = sigma[row];
-                sigma[row] = tmp_row;
+                swap (sigma[i], sigma[row]);
                 break;
             }
         if (!tmp_h[row][col])
