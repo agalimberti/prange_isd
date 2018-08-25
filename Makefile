@@ -16,7 +16,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 .PHONY : all clean
 
 all: $(COBJS)
-	ar rcs $(OBJDIR)/prange_isd_N$(N)_K$(K).a $(COBJS) 
+	ar rcs $(OBJDIR)/prange_N$(N)_K$(K).a $(COBJS) 
 
 clean:
 	$(RM) $(OBJDIR)/*.o

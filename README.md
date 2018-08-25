@@ -1,11 +1,11 @@
 # README
 
 This is a tutorial of the PrangeISD project.  
-For testing purposes, the files contained in the _test/_ folder can be used; these are:
-- a Hamming(7,4) code, with errors having Hamming weight equal to 1, and
-- a Goppa(12,4,≥5) code, with errors having Hamming weight equal to 1 or 2.
+For testing purposes, the following files contained in the _test/_ folder can be used:
+- a Hamming(7,4) code, which can correct errors with Hamming weight equal to 1, and
+- a Goppa(12,4,5) code, which can correct errors with Hamming weight up to 2.
 
-For information about the Prange instruction set decoding algorithm, refer to: https://hackingthe.net/downloads/isd.pdf
+For information about the Prange instruction set decoding algorithm, refer to: https://hackingthe.net/downloads/isd.pdf.
 
 ## Compiling instructions
 
@@ -30,7 +30,7 @@ For information about the Prange instruction set decoding algorithm, refer to: h
 :::bash
   $ cd test
   $ g++ test_prange_goppa_N12_K4.cpp -c -I../include -DN=12 -DK=4 -o test_prange_goppa_N12_K4.o
-  $ g++ test_prange_goppa_N12_K4.o ../bin/prange_isd_N12_K4.a -o test_goppa
+  $ g++ test_prange_goppa_N12_K4.o ../bin/prange_N12_K4.a -o test_goppa
 ~~~
 
 2) Launch the executable:
