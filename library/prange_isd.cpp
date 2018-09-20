@@ -36,6 +36,7 @@ bool gaussian_elimination (const vector<bitset<N> > &h, const bitset<N-K> &s, bi
     vector<bitset<N> > tmp_h;
     tmp_h = h;
     sigma = s;
+    bool tmp_b;
 
     // apply Gaussian elimination
     for (int col=K, row=0; col<N && row<N-K; col++) {
@@ -44,7 +45,9 @@ bool gaussian_elimination (const vector<bitset<N> > &h, const bitset<N-K> &s, bi
                 // swap rows
                 swap (tmp_h[i], tmp_h[row]);
                 // swap corresponding syndrome bits
-                swap (sigma[i], sigma[row]);
+		        tmp_b = (bool)sigma[row];
+                sigma[row] = (bool)sigma[i];
+                sigma[i] = tmp_b;
                 break;
             }
         if (!tmp_h[row][col])
